@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Ghost_Collision
+  - token5
+  - token10
+  - token15
+  - token30
+  - Stairs
+  - StairsTrigger
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: ui
+    uniqueID: 1289678563
+    locked: 0
+  - name: background
+    uniqueID: 3051572521
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: stairs
+    uniqueID: 3691230021
+    locked: 0
+  - name: token
+    uniqueID: 3099309575
+    locked: 0
+  - name: barrier
+    uniqueID: 141287299
+    locked: 0
+  - name: stickman
+    uniqueID: 3762225765
+    locked: 0
+  - name: ghosts
+    uniqueID: 2646357573
+    locked: 0
+  - name: elevatorBackground
+    uniqueID: 778549333
+    locked: 0
+  - name: elevator
+    uniqueID: 631545123
+    locked: 0
+  - name: floors
+    uniqueID: 2246009811
+    locked: 0
