@@ -11,6 +11,7 @@ TagManager:
   - token30
   - Stairs
   - StairsTrigger
+  - Elevator
   layers:
   - Default
   - TransparentFX

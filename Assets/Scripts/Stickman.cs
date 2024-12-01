@@ -62,7 +62,7 @@ public class Stickman : MonoBehaviour
         if (other.CompareTag("StairsTrigger"))
         {
             IsOnStairs = true;
-            Debug.Log("Entered stairs area");
+            //Debug.Log("Entered stairs area");
         }
         if(other.CompareTag("Ghost_Collision")){
             caught++;
@@ -74,6 +74,9 @@ public class Stickman : MonoBehaviour
               SceneManager.LoadScene("MainMenu"); 
             } 
         }
+         if(other.CompareTag("Elevator")){
+            Debug.Log("ELEVATOR HELLO");
+         }
     }
     void OnTriggerExit2D(Collider2D other)
     {
@@ -81,7 +84,7 @@ public class Stickman : MonoBehaviour
         {
             IsOnStairs = false;
             isClimbing = false;
-            Debug.Log("Exited stairs area");
+           // Debug.Log("Exited stairs area");
         }
     }
     public int GetTokenCounter(){

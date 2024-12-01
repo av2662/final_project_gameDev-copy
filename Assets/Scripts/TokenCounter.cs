@@ -28,7 +28,7 @@ public class TokenCounter : MonoBehaviour
         tokenText.text = currentCount + (" / ") + tokensToWinLevel;
         if (countNum >= tokensToWinLevel)
         {
-            SceneManager.LoadScene("Level2Scene");
+           // SceneManager.LoadScene("Level2Scene");
         }
         //this needs to be fixed for other levels
         //tokenText.text = playerInputHandler.GetPlayerCharacter().GetTokenCounter().ToString();

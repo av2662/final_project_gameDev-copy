@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a8953602d44714b2f9a35ac44def7f80
+guid: 6845c7d4dece9465994a003db65fd163
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -53,7 +53,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -95,18 +95,48 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline: []
-    physicsShape: []
+    sprites:
+    - serializedVersion: 2
+      name: QuitButton_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 18
+        width: 52
+        height: 28
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eaf01e67ee31a461fb8f20dd92cc11f9
+      internalID: 261549202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: -26, y: -16}
+      - {x: -26, y: 15}
+      - {x: 28, y: 15}
+      - {x: 28, y: -16}
+    physicsShape:
+    - - {x: -26, y: -15}
+      - {x: -26, y: 21}
+      - {x: 28, y: 21}
+      - {x: 28, y: -15}
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      QuitButton_0: 261549202
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

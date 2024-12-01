@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//pretty much the same logic i used for the ghosts
 public class LadderSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject ladderPrefab;                 
-    [SerializeField] int initialLadderCountPerFloor = 2;  
+    [SerializeField] GameObject ladderPrefab;
+    [SerializeField] int initialLadderCountPerFloor = 2;
 
-    [SerializeField] float minDistanceBetweenLadders = 3f;     // Minimum distance between ladders
+    [SerializeField] float minDistanceBetweenLadders = 3f; // Minimum distance between ladders
 
     // Define the X range for random spawn positions
     [SerializeField] float minX = -10f;
@@ -17,6 +16,9 @@ public class LadderSpawner : MonoBehaviour
     // Define specific Y positions for each floor
     [SerializeField] float firstFloorY = -2f;
     [SerializeField] float secondFloorY = 3f;
+
+    [SerializeField] Transform elevatorPosition; // Reference to the elevator position
+    [SerializeField] float elevatorAvoidanceRadius = 3f; // Radius around the elevator to avoid placing ladders
 
     private List<GameObject> currentLadders = new List<GameObject>(); // Track active ladders
 
@@ -48,7 +50,7 @@ public class LadderSpawner : MonoBehaviour
             float xPos = Random.Range(minX, maxX);
             spawnPosition = new Vector3(xPos, yPosition, 0);
 
-            // Check if the new position is far enough from existing ladders
+            // Check if the new position is valid
             validPosition = IsPositionValid(spawnPosition);
         }
 
@@ -60,6 +62,7 @@ public class LadderSpawner : MonoBehaviour
     // Method to check if a spawn position is valid
     bool IsPositionValid(Vector3 position)
     {
+        // Check distance from existing ladders
         foreach (GameObject ladder in currentLadders)
         {
             if (Vector3.Distance(ladder.transform.position, position) < minDistanceBetweenLadders)
@@ -67,6 +70,13 @@ public class LadderSpawner : MonoBehaviour
                 return false; // Position is too close to an existing ladder
             }
         }
+
+        // Check distance from the elevator
+        if (elevatorPosition != null && Vector3.Distance(position, elevatorPosition.position) < elevatorAvoidanceRadius)
+        {
+            return false; // Position is too close to the elevator
+        }
+
         return true; // Position is valid
     }
 }
