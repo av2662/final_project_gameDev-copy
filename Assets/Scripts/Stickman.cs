@@ -15,6 +15,7 @@ public class Stickman : MonoBehaviour
 
     [SerializeField] Image[] heartIcons;               // Array for heart symbols
     [SerializeField] Color caughtColor = Color.gray;   // Color for heart when caught
+    //private GhostAI ghostAI;
     
     Vector3 climbingDirection;
     int tokenCount = 0;
@@ -25,11 +26,7 @@ public class Stickman : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   
 
     void Update()
     {
@@ -57,8 +54,6 @@ public class Stickman : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        
-    
         if (other.CompareTag("StairsTrigger"))
         {
             IsOnStairs = true;
@@ -68,6 +63,13 @@ public class Stickman : MonoBehaviour
             caught++;
             Debug.Log("ghost collision");
             UpdateHeartIcons(); // Call to update hearts
+            // Get the GhostAI component and call CatchPlayer
+            GhostAI ghostAI = other.GetComponent<GhostAI>();
+            if (ghostAI != null)
+            {
+                ghostAI.CatchPlayer(); // Call the instance method
+            }
+          
             //change color here
             if(caught > 1){
               Debug.Log("GAME OVER");  

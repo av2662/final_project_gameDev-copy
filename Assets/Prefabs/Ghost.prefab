@@ -48,6 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolSpeed: 2
+  increasedSpeed: 3
+  caughtColor: {r: 0.9245283, g: 0.6497864, b: 0.6497864, a: 1}
+  increasedScale: {x: 1.1, y: 1.07, z: 1}
 --- !u!212 &8274360322939514709
 SpriteRenderer:
   m_ObjectHideFlags: 0

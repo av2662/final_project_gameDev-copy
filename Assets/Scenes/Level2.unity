@@ -1022,7 +1022,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.005
+  m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 0000000065023fe045b303dc07b6bbb855b8672e239da425d363df8583df6b084536bc9d294de3b5e3eede4c
@@ -1303,13 +1303,9 @@ MonoBehaviour:
   - 0.5
   - 4
   moveSpeed: 2
+  coinsRequired: 175
   player: {fileID: 1303087133}
-  coinsRequired: 150
-  cooldownTime: 5
-  elevatorAudioSource: {fileID: 0}
-  readySound: {fileID: 0}
-  elevatorSpriteRenderer: {fileID: 665642750}
-  cooldownColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 0.87058824}
+  cooldownTime: 3
 --- !u!1 &683849719
 GameObject:
   m_ObjectHideFlags: 0

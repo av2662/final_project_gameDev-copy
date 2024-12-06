@@ -46,9 +46,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: ui
-    uniqueID: 1289678563
-    locked: 0
   - name: background
     uniqueID: 3051572521
     locked: 0
@@ -78,4 +75,7 @@ TagManager:
     locked: 0
   - name: floors
     uniqueID: 2246009811
+    locked: 0
+  - name: ui
+    uniqueID: 1289678563
     locked: 0

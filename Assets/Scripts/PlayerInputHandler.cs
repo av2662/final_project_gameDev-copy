@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerInputHandler : MonoBehaviour
 {
     [SerializeField] Stickman stickman;
-    // Start is called before the first frame update
+    
+
+    ElevatorController elevatorController;  // Reference to the ElevatorController
     void Start()
     {
-        
+         elevatorController = FindObjectOfType<ElevatorController>();
     }
     void Update()
     {
@@ -22,6 +24,17 @@ public class PlayerInputHandler : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.S))  // Trigger descent when "S" is pressed
             {
                 stickman.StartClimbing(false); // Climb down
+            }
+        }
+        if (elevatorController != null && elevatorController.IsPlayerOnElevator(stickman))
+        {
+            if (Input.GetKeyDown(KeyCode.W))  // Move elevator up on 'W' key
+            {
+                elevatorController.MoveElevator(1);  // Move up (next floor)
+            }
+            else if (Input.GetKeyDown(KeyCode.S))  // Move elevator down on 'S' key
+            {
+                elevatorController.MoveElevator(-1);  // Move down (previous floor)
             }
         }
     }
