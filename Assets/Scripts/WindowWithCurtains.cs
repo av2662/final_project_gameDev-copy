@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class WindowWithCurtains : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer curtainRenderer; // Optional: For curtain visuals
-    [SerializeField] private Color hiddenColor = Color.gray; // Optional: Change curtain color when hiding
+    [SerializeField] private SpriteRenderer curtainRenderer;
+    [SerializeField] private Color hiddenColor = Color.gray; 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
