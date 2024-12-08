@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WindowSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject windowPrefab; // Prefab for the window
+    [SerializeField] GameObject windowPrefab; 
     [SerializeField] private List<GameObject> ghosts; // List of ghost GameObjects
     [SerializeField] private float offsetX = 1.5f;    // Horizontal offset from the ghost's spawn position
      private float offsetY = 2f;      // Vertical offset from the ghost's spawn position
@@ -25,7 +25,7 @@ public class WindowSpawner : MonoBehaviour
             yield break;
         }
 
-        Debug.Log($"Found {ghosts.Count} ghosts after delay. Spawning windows...");
+       
         SpawnWindowsNearGhosts();
     }
     void SpawnWindowsNearGhosts()
