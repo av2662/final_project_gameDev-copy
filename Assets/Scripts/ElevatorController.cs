@@ -23,14 +23,14 @@ public class ElevatorController : MonoBehaviour
 
     // Cooldown settings
     public float cooldownTime = 3f;   // Time in seconds before the elevator can be used again
-    private bool isCooldown = false;  // Tracks whether the elevator is in cooldown
-    private IElevatorState currentState;  // Store the current state
+    private bool isCooldown = false;  // 
+    private IElevatorState currentState;  
 
-    // Audio settings for Ready state
+   
     public AudioSource elevatorAudioSource;
     public AudioClip readySound;
 
-    // Cooldown sprite and color settings
+    
     public SpriteRenderer elevatorSpriteRenderer;
     public Color cooldownColor = Color.red;
     private Color originalColor;
@@ -51,7 +51,7 @@ public class ElevatorController : MonoBehaviour
         // Check if the target floor is valid
         if (targetFloor >= 0 && targetFloor < floorPositions.Length)
         {
-            StartCoroutine(MoveToFloor(targetFloor));  // Start moving to the target floor
+            StartCoroutine(MoveToFloor(targetFloor));  
         }
         else
         {
@@ -94,7 +94,7 @@ public class ElevatorController : MonoBehaviour
             nextLevelImage.transform.localPosition += movement * 2 * Time.deltaTime;
             yield return null;
         }
-        // Wait for 5 seconds in real time
+        
         yield return new WaitForSecondsRealtime(3f);
        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
@@ -104,7 +104,7 @@ public class ElevatorController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerTransform = null;  // Clear the player reference when they exit the elevator
+            playerTransform = null;  
         }
     }
 
@@ -120,7 +120,7 @@ public class ElevatorController : MonoBehaviour
             playerTransform.GetComponent<Stickman>().enabled = false;  // Disable player movement script
         }
 
-        // Animate the elevator moving to the target Y position
+       
         while (Mathf.Abs(transform.position.y - targetY) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(transform.position, 
