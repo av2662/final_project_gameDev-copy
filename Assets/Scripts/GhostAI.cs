@@ -50,7 +50,7 @@ public class GhostAI : MonoBehaviour
         currentState.UpdateState(this);
     }
 
-    // State Interface
+    
     public interface IGhostState
     {
         void EnterState(GhostAI ghost);
@@ -78,7 +78,7 @@ public class GhostAI : MonoBehaviour
         {
             Debug.Log("Ghost entered Aggressive State.");
 
-            // Change behavior when in aggressive state
+        
             ghost.patrolSpeed = ghost.increasedSpeed;
             ghost.spriteRenderer.color = ghost.caughtColor;
             ghost.transform.localScale = ghost.increasedScale;
