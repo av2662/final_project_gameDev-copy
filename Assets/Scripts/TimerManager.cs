@@ -51,7 +51,7 @@ public class TimerManager : MonoBehaviour
     }
     IEnumerator TransitionInLose()
     {
-       // Disable player controls and any gameplay logic
+       
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
