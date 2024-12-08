@@ -8,6 +8,7 @@ public class TokenSpawner : MonoBehaviour
     [SerializeField] GameObject[] tokens;               // Array to store different token prefabs
     [SerializeField] int initialCoinCount = 5;          // Number of coins to spawn at the beginning
 
+    [SerializeField] AudioSource audioSource;
     public float minDistanceBetweenTokens = 2f; // Minimum distance between tokens
 
     [SerializeField] PlayerInputHandler playerInputHandler;
@@ -24,10 +25,10 @@ public class TokenSpawner : MonoBehaviour
 
     void Start()
     {
-        SpawnInitialCoins();                  // Spawn initial set of coins at the start of the level
+        SpawnInitialCoins();  
     }
 
-    // Method to spawn initial coins
+
     void SpawnInitialCoins()
     {
         for (int i = 0; i < initialCoinCount; i++)
@@ -58,7 +59,7 @@ public class TokenSpawner : MonoBehaviour
             validPosition = IsPositionValid(spawnPosition);
         }
 
-        // Instantiate the token and add it to the currentTokens list
+       
         GameObject newToken = Instantiate(selectedToken, spawnPosition, Quaternion.identity);
         currentTokens.Add(newToken);
 
@@ -67,22 +68,35 @@ public class TokenSpawner : MonoBehaviour
         tokenScript.spawner = this;
     }
 
-    // check if a spawn position is valid
-    bool IsPositionValid(Vector3 position)
+    // Method to check if a spawn position is valid
+bool IsPositionValid(Vector3 position)
+{
+    
+    Vector3 playerPosition = playerInputHandler.GetPlayerCharacter().transform.position;
+
+    // Check if the position is far enough from the player
+    if (Vector3.Distance(playerPosition, position) < minDistanceBetweenTokens)
     {
-        foreach (GameObject token in currentTokens)
-        {
-            if (Vector3.Distance(token.transform.position, position) < minDistanceBetweenTokens)
-            {
-                return false; // too close to existing token
-            }
-        }
-        return true;
+        return false; // Too close to the player
     }
+
+    // Check if the position is far enough from existing tokens
+    foreach (GameObject token in currentTokens)
+    {
+        if (Vector3.Distance(token.transform.position, position) < minDistanceBetweenTokens)
+        {
+            return false; // Too close to an existing token
+        }
+    }
+
+    return true; // Valid position
+}
+
 
     // Method to handle a token being collected
     public void OnTokenCollected(GameObject collectedToken)
     {
+        audioSource.Play();
         // Increase score based on the tag of the collected token
         if (collectedToken.CompareTag("token5"))
             tokenCount += 5;
@@ -93,8 +107,7 @@ public class TokenSpawner : MonoBehaviour
         else if (collectedToken.CompareTag("token30"))
             tokenCount += 30;
 
-        currentTokens.Remove(collectedToken);  // Remove from active token list
-        Destroy(collectedToken);               // Destroy the collected token
+        currentTokens.Remove(collectedToken);  
 
         playerInputHandler.GetPlayerCharacter().setTokenCount(tokenCount);
         SpawnToken();                          // Spawn a replacement token

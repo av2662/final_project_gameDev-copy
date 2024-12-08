@@ -51,6 +51,7 @@ public class PlayerInputHandler : MonoBehaviour
         
         stickman.Move(movement);
     }
+    
     public Stickman GetPlayerCharacter(){
         return stickman;
     }

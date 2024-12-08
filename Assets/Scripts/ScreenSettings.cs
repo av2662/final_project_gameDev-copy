@@ -8,6 +8,7 @@ using System;
 public class ScreenSettings : MonoBehaviour
 {
     [SerializeField] TMP_Dropdown resolutionDropdown;
+    [SerializeField] Toggle fullScreenToggle;
     Resolution[] resolutions;
 
     void Start(){
@@ -21,10 +22,25 @@ public class ScreenSettings : MonoBehaviour
         currentResolutionIndex = Math.Min(currentResolutionIndex, resolutions.Length - 1);
         resolutionDropdown.value = currentResolutionIndex;
         SetResolution();
+
+       if (fullScreenToggle != null)
+        {
+            fullScreenToggle.isOn = Screen.fullScreen;
+            fullScreenToggle.onValueChanged.AddListener(OnFullScreenToggleChanged);
+        }
+
+       
     }
     public void SetResolution(){
         int rezIndex = resolutionDropdown.value;
         Screen.SetResolution(resolutions[rezIndex].width, resolutions[rezIndex].height, true);
         PlayerPrefs.SetInt("ResolutionIndex", resolutionDropdown.value);
     }
+
+    void OnFullScreenToggleChanged(bool isOn)
+    {
+        Screen.fullScreen = isOn;
+        
+    }
+    
 }

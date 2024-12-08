@@ -6,6 +6,8 @@ public class Token : MonoBehaviour
 {
     public TokenSpawner spawner; // Reference to the CoinSpawner
 
+    
+
     void OnTriggerEnter2D(Collider2D other)
     {
         // Check if the player collected the token

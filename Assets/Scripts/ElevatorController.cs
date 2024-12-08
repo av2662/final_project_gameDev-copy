@@ -1,120 +1,20 @@
-/*using System.Collections;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
-public class ElevatorController : MonoBehaviour
-{
-    [Header("Elevator Movement")]
-    public float[] floorPositions;      // Array of valid Y positions for the floors
-    public float moveSpeed = 2f;        // Speed at which the elevator moves
-    private int currentFloor = 0;       // Tracks the current floor index
-    private bool isMoving = false;      // Prevent simultaneous movements
-
-    private Transform playerTransform;  // Tracks the player riding the elevator
-    public Stickman player;            // Reference to the Stickman script
-    public int coinsRequired = 10;     // Number of coins required to activate the elevator
-
-    public bool IsPlayerOnElevator(Stickman stickman)
-    {
-        return playerTransform != null && playerTransform.GetComponent<Stickman>() == stickman;
-    }
-
-    // Cooldown settings
-    public float cooldownTime = 3f;   // Time in seconds before the elevator can be used again
-    private bool isCooldown = false;  // Tracks whether the elevator is in cooldown
-
-    public void MoveElevator(int direction)
-    {
-        if (isMoving || isCooldown) return;  // Prevent movement if elevator is moving or in cooldown
-
-        int targetFloor = currentFloor + direction;
-
-        // Check if the target floor is valid
-        if (targetFloor >= 0 && targetFloor < floorPositions.Length)
-        {
-            StartCoroutine(MoveToFloor(targetFloor));  // Start moving to the target floor
-        }
-        else
-        {
-            Debug.Log("Cannot move further in that direction.");
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerTransform = other.transform;  // Reference the player entering the elevator
-            if(player.GetTokenCounter() >= coinsRequired){
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerTransform = null;  // Clear the player reference when they exit the elevator
-        }
-    }
-
-    private IEnumerator MoveToFloor(int floorIndex)
-    {
-        isMoving = true;
-        isCooldown = true;  // Start the cooldown after elevator is activated
-        float targetY = floorPositions[floorIndex];
-
-        if (playerTransform != null)
-        {
-            playerTransform.SetParent(transform);
-            playerTransform.GetComponent<Stickman>().enabled = false;  // Disable player movement script
-        }
-
-        // Animate the elevator moving to the target Y position
-        while (Mathf.Abs(transform.position.y - targetY) > 0.1f)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, 
-                                                     new Vector3(transform.position.x, targetY, transform.position.z), 
-                                                     moveSpeed * Time.deltaTime);
-            yield return null;
-        }
-
-        // Set the elevator to the target floor position
-        transform.position = new Vector3(transform.position.x, targetY, transform.position.z);
-        currentFloor = floorIndex;  // Update the current floor index
-
-        // Unparent the player after reaching the destination
-        if (playerTransform != null)
-        {
-            playerTransform.SetParent(null);
-             playerTransform.GetComponent<Stickman>().enabled = true;
-        }
-
-        isMoving = false;  // Allow for new movement after reaching the target
-
-        // Wait for the cooldown before allowing the elevator to be used again
-        yield return new WaitForSeconds(cooldownTime);
-
-        isCooldown = false;  // Cooldown is over, elevator can be used again
-    }
-}
-*/
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ElevatorController : MonoBehaviour
 {
-    [Header("Elevator Movement")]
     public float[] floorPositions;      // Array of valid Y positions for the floors
     public float moveSpeed = 2f;        // Speed at which the elevator moves
-    private int currentFloor = 0;       // Tracks the current floor index
-    private bool isMoving = false;      // Prevent simultaneous movements
+    int currentFloor = 0;       // Tracks the current floor index
+    bool isMoving = false;      // Prevent simultaneous movements
 
-    private Transform playerTransform;  // Tracks the player riding the elevator
-    public Stickman player;            // Reference to the Stickman script
-    public int coinsRequired = 10;     // Number of coins required to activate the elevator
+    Transform playerTransform;  // Tracks the player riding the elevator
+    [SerializeField] Stickman player;            // Reference to the Stickman script
+    [SerializeField] int coinsRequired = 10;     // Number of coins required to activate the elevator
+
+    [SerializeField] Image nextLevelImage;
 
     public bool IsPlayerOnElevator(Stickman stickman)
     {
@@ -165,9 +65,39 @@ public class ElevatorController : MonoBehaviour
         {
             playerTransform = other.transform;  // Reference the player entering the elevator
             if(player.GetTokenCounter() >= coinsRequired){
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                 StartCoroutine(TransitionInNextLevel());
             }
         }
+    }
+    IEnumerator TransitionInNextLevel()
+    {
+       // Disable player controls and any gameplay logic
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            Debug.Log("jdlfkjsl");
+            player.GetComponent<Stickman>().enabled = false; 
+        }
+
+       
+        GameObject[] ghosts = GameObject.FindGameObjectsWithTag("Ghost_Collision");
+        foreach (GameObject ghost in ghosts)
+        {
+            ghost.GetComponent<GhostAI>().enabled = false; 
+        }
+        Vector3 startPosition = nextLevelImage.transform.localPosition;
+        Vector3 targetPosition = new Vector3(0, startPosition.y, startPosition.z);
+        Vector3 movement = Vector3.zero;
+
+        while(nextLevelImage.transform.localPosition.x > targetPosition.x){
+            movement += new Vector3(-1,0,0);
+            nextLevelImage.transform.localPosition += movement * 2 * Time.deltaTime;
+            yield return null;
+        }
+        // Wait for 5 seconds in real time
+        yield return new WaitForSecondsRealtime(3f);
+       SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
     }
 
     private void OnTriggerExit2D(Collider2D other)

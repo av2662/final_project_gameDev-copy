@@ -164,7 +164,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 139.06
   m_PointLightOuterAngle: 139.06
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 2.4
+  m_PointLightOuterRadius: 3.4
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1

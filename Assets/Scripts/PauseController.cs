@@ -42,7 +42,7 @@ public class PauseController : MonoBehaviour
         GetComponent<Canvas>().enabled = false; // Hide pause menu
     }
 
-    public void GoBackToMainMenu()
+    public void SaveQuit()
     {
         // Save the current level
         PlayerPrefs.SetString("SavedLevel", SceneManager.GetActiveScene().name);
@@ -52,4 +52,16 @@ public class PauseController : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
+    public void Quit()
+    {
+        // Delete the "SavedLevel" PlayerPrefs key if it exists
+        if (PlayerPrefs.HasKey("SavedLevel"))
+        {
+            PlayerPrefs.DeleteKey("SavedLevel");
+            Debug.Log("Deleted 'SavedLevel' PlayerPrefs key.");
+        }
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
+    }
+    
 }

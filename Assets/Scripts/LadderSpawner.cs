@@ -61,22 +61,27 @@ public class LadderSpawner : MonoBehaviour
 
     // Method to check if a spawn position is valid
     bool IsPositionValid(Vector3 position)
+{
+    // Check distance from existing ladders
+    foreach (GameObject ladder in currentLadders)
     {
-        // Check distance from existing ladders
-        foreach (GameObject ladder in currentLadders)
+        if (Vector3.Distance(ladder.transform.position, position) < minDistanceBetweenLadders)
         {
-            if (Vector3.Distance(ladder.transform.position, position) < minDistanceBetweenLadders)
-            {
-                return false; // Position is too close to an existing ladder
-            }
+            return false; // Position is too close to an existing ladder
         }
-
-        // Check distance from the elevator
-        if (elevatorPosition != null && Vector3.Distance(position, elevatorPosition.position) < elevatorAvoidanceRadius)
-        {
-            return false; // Position is too close to the elevator
-        }
-
-        return true; // Position is valid
     }
+
+    // Check horizontal distance from the elevator
+    if (elevatorPosition != null)
+    {
+        float xDistanceToElevator = Mathf.Abs(position.x - elevatorPosition.position.x);
+        if (xDistanceToElevator < elevatorAvoidanceRadius) // Check x-distance only
+        {
+            return false; // Position is too close to the elevator's x-position
+        }
+    }
+
+    return true; // Position is valid
+}
+
 }
