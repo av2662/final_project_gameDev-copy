@@ -37,7 +37,7 @@ public class TokenSpawner : MonoBehaviour
         }
     }
 
-    // spawn a single token at a random position within the range
+   
     public void SpawnToken()
     {
         // Select a random token prefab
@@ -68,7 +68,7 @@ public class TokenSpawner : MonoBehaviour
         tokenScript.spawner = this;
     }
 
-    // Method to check if a spawn position is valid
+   
 bool IsPositionValid(Vector3 position)
 {
     
@@ -93,7 +93,7 @@ bool IsPositionValid(Vector3 position)
 }
 
 
-    // Method to handle a token being collected
+   
     public void OnTokenCollected(GameObject collectedToken)
     {
         audioSource.Play();
