@@ -7,7 +7,7 @@ public class GhostSpawner : MonoBehaviour
     [SerializeField] GameObject ghostPrefab;                  // Ghost prefab to spawn
     //[SerializeField] int initialGhostCountPerFloor = 2;       // Number of ghosts to spawn on each floor
     
-    [SerializeField] Transform player;                        // Reference to the player
+    [SerializeField] Transform player;                        
     [SerializeField] float minDistanceFromPlayer = 2f;   
     [SerializeField] int ghostCountFloor1 = 1;       // Number of ghosts to spawn on each floor
     
@@ -36,7 +36,7 @@ public class GhostSpawner : MonoBehaviour
         SpawnGhostsForFloor(thirdFloorY, ghostCountFloor3); 
     }
 
-    // Method to spawn ghosts on a specified floor
+   
     void SpawnGhostsForFloor(float yPosition, int ghostCount)
     {
         for (int i = 0; i < ghostCount; i++)
@@ -62,7 +62,7 @@ public class GhostSpawner : MonoBehaviour
             validPosition = IsPositionValid(spawnPosition);
         }
 
-        // Instantiate the ghost and add it to the currentGhosts list
+        
         GameObject newGhost = Instantiate(ghostPrefab, spawnPosition, Quaternion.identity);
         currentGhosts.Add(newGhost);
     }
@@ -71,13 +71,13 @@ public class GhostSpawner : MonoBehaviour
   
     bool IsPositionValid(Vector3 position)
     {
-        // Check distance from the player
+       
         if (Vector3.Distance(player.position, position) < minDistanceFromPlayer)
         {
             return false; // Position is too close to the player
         }
 
-        // Check distance from existing ghosts
+       
         foreach (GameObject ghost in currentGhosts)
         {
             if (Vector3.Distance(ghost.transform.position, position) < minDistanceBetweenGhosts)
