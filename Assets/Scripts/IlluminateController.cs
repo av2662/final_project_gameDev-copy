@@ -5,11 +5,11 @@ using UnityEngine.Rendering.Universal;
 
 public class IlluminateController : MonoBehaviour
 {
-    public Light2D globalLight;  // Reference to the Global Light 2D
+    public Light2D globalLight;  
     public Button illuminateButton; // Reference to the UI button
     public float illuminationDuration = 8f; // How long the illumination lasts
-    public float cooldownDuration = 15f;   // Cooldown time between uses
-    public float brightIntensity = 1f;    // Brightness during illumination
+    public float cooldownDuration = 15f;   
+    public float brightIntensity = 1f;    
     public float dimIntensity = 0.1f;     // Normal brightness
 
     private bool isCooldown = false;
@@ -37,13 +37,12 @@ public class IlluminateController : MonoBehaviour
         // Disable the button during illumination
         illuminateButton.interactable = false;
 
-        // Wait for the illumination duration
+        
         yield return new WaitForSeconds(illuminationDuration);
 
-        // Dim the global light back to normal
+        // Dim the global
         globalLight.intensity = dimIntensity;
 
-        // Start cooldown
         StartCoroutine(StartCooldown());
     }
 
@@ -51,7 +50,7 @@ public class IlluminateController : MonoBehaviour
     {
         isCooldown = true;
 
-        // Wait for the cooldown duration
+        
         yield return new WaitForSeconds(cooldownDuration);
 
         isCooldown = false;
@@ -60,7 +59,7 @@ public class IlluminateController : MonoBehaviour
 
     void ResetButtonState()
     {
-        // Enable the button and reset any UI changes
+        
         illuminateButton.interactable = true;
     }
 }
