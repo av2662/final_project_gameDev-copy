@@ -82,9 +82,9 @@ public class Stickman : MonoBehaviour
     }
     void Flip()
     {
-        facingRight = !facingRight; // Toggle facing direction
+        facingRight = !facingRight; 
         Vector3 scale = transform.localScale;
-        scale.x *= -1; // Flip the sprite horizontally
+        scale.x *= -1; // Flip horizontally
         transform.localScale = scale;
     }
 
@@ -176,7 +176,7 @@ public class Stickman : MonoBehaviour
         return isHidden;
     }
 
-    // Method to turn off the flashlight
+    
     private void TurnOffFlashlight()
     {
         if (flashlight != null)
@@ -185,7 +185,7 @@ public class Stickman : MonoBehaviour
         }
     }
 
-    // Method to turn on the flashlight
+   
     private void TurnOnFlashlight()
     {
         if (flashlight != null)
