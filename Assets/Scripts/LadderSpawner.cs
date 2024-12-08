@@ -9,11 +9,11 @@ public class LadderSpawner : MonoBehaviour
 
     [SerializeField] float minDistanceBetweenLadders = 3f; // Minimum distance between ladders
 
-    // Define the X range for random spawn positions
+   
     [SerializeField] float minX = -10f;
     [SerializeField] float maxX = 10f;
 
-    // Define specific Y positions for each floor
+  
     [SerializeField] float firstFloorY = -2f;
     [SerializeField] float secondFloorY = 3f;
 
@@ -28,7 +28,7 @@ public class LadderSpawner : MonoBehaviour
         SpawnLaddersForFloor(secondFloorY, initialLadderCountPerFloor); // Spawn ladders on the second floor
     }
 
-    // Method to spawn ladders on a specified floor
+   
     void SpawnLaddersForFloor(float yPosition, int ladderCount)
     {
         for (int i = 0; i < ladderCount; i++)
@@ -37,16 +37,16 @@ public class LadderSpawner : MonoBehaviour
         }
     }
 
-    // Method to spawn a single ladder at a random position within the range for a specific floor
+    // spawn a single ladder at a random position within the range for a specific floor
     void SpawnLadder(float yPosition)
     {
         Vector3 spawnPosition = Vector3.zero;
         bool validPosition = false;
 
-        // Try to find a valid spawn position
+       
         while (!validPosition)
         {
-            // Generate a random position within the specified X range
+            
             float xPos = Random.Range(minX, maxX);
             spawnPosition = new Vector3(xPos, yPosition, 0);
 
@@ -54,12 +54,12 @@ public class LadderSpawner : MonoBehaviour
             validPosition = IsPositionValid(spawnPosition);
         }
 
-        // Instantiate the ladder and add it to the currentLadders list
+       
         GameObject newLadder = Instantiate(ladderPrefab, spawnPosition, Quaternion.identity);
         currentLadders.Add(newLadder);
     }
 
-    // Method to check if a spawn position is valid
+    
     bool IsPositionValid(Vector3 position)
 {
     // Check distance from existing ladders
